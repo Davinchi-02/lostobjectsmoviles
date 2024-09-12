@@ -9,7 +9,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
@@ -70,7 +72,19 @@ fun Formulario (){
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        Color(0xFF002366).copy(alpha = 0.8f), // Azul oscuro semi-transparente
+                        Color(0xFF003399).copy(alpha = 0.2f)  // Azul más claro con mayor transparencia
+                    ),
+                    start = androidx.compose.ui.geometry.Offset(0f, 0f),
+                    end = androidx.compose.ui.geometry.Offset(
+                        1000f,
+                        1000f
+                    ) // Dirección del degradado
+                )
+            ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
@@ -85,15 +99,15 @@ fun Formulario (){
             modifier = Modifier.background(Color.White),
             value = usuario,
             onValueChange = {usuario= it},
-            label = { Text("Usuario",)},
-            placeholder = { Text("Ingresa tu Usuario")}
+            label = { Text("Usuario",color = Color.Black)},
+            placeholder = { Text("Ingresa tu Usuario", color = Color.Black)}
         )
 
-        OutlinedTextField(
+        TextField(
             modifier = Modifier.background(Color.White),
             value = password,
             onValueChange = { password = it },
-            label = { Text("Contraseña") },
+            label = { Text("Contraseña", color = Color.Black) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),//2
             singleLine = true,
             visualTransformation =
@@ -109,19 +123,20 @@ fun Formulario (){
                 }
             }
         )
+        Spacer(modifier = Modifier.height(16.dp))
         OutlinedButton(
             onClick = { }, border = BorderStroke(
                 width = 4.dp,
                 brush = Brush.horizontalGradient(
 
                     listOf(
-                        Color(0xFFFFA726),
-                        Color(0xFFFFA726)
+                        Color(0xFF42A5F5),
+                        Color(0xFF42A5F5)
                     )
                 )
             )
         ) {
-            Text("Iniciar sesion", color = Color(0xFF5C6BC0))
+            Text("Iniciar sesion", color = Color.White)
         }
 
         OutlinedButton(
@@ -131,12 +146,12 @@ fun Formulario (){
 
                     listOf(
                         Color(0xFF42A5F5),
-                        Color(0xFFFFA726)
+                        Color(0xFF42A5F5)
                     )
                 )
             )
         ) {
-            Text("Registrarse", color = Color(0xFF5C6BC0))
+            Text("Registrarse", color = Color.White)
         }
     }
 
